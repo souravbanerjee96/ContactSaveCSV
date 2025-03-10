@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+					
+public class Program
+{
+	public static void Main()
+	{		
+		string inp = "abcdefabcdefabc";
+		List<char> data = new();
+		string finalData = "";
+		int currcount = 0, prevCount = 0;
+		foreach(var d in inp){
+			if(!data.Contains(d)){
+				data.Add(d);
+				
+			}
+			else{
+				int index= data.IndexOf(d);
+				if(index==0){
+					data.RemoveAt(0);
+					data.Add(d);
+				}
+					
+				else{
+					currcount=data.Count();
+					if(currcount>prevCount){
+						finalData =  new string (data.ToArray());
+						prevCount = currcount;
+					}
+					data.Clear();
+					data.Add(d);
+				}
+			}
+		}
+	
+	Console.WriteLine(data.Count<finalData.Length? finalData + " - count from raw "+finalData.Length : new string (data.ToArray()) + " - count from main "+data.Count );
+	}
+	
+
+}
